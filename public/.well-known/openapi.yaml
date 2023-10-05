@@ -1,0 +1,47 @@
+openapi: 3.0.1
+info:
+  title: FirPT Plugin
+  description: ChatGPT plugin to give ChatGPT extra powers.
+  version: 'v1'
+servers:
+  - url: http://localhost:3333
+
+paths:
+  /web/search:
+    get:
+      operationId: getWebSearch
+      summary: Get web search engine results from a query.
+      parameters:
+        - in: query
+          name: query
+          description: Query to search for
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getWebSearchResponse'
+
+components:
+  schemas:
+    getWebSearchResponse:
+      type: object
+      properties:
+        searchResults:
+          type: array
+          description: Ranked list of websites results
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                description: Website title
+              description:
+                type: string
+                description: Website description
+              url:
+                type: string
+                description: Website URL

@@ -1,0 +1,63 @@
+{
+  "name": "firept",
+  "version": "1.0.0",
+  "license": "AGPL-3.0-or-later",
+  "description": " ChatGPT plugin to give ChatGPT extra powers.",
+  "type": "module",
+  "engines": {
+    "node": ">=20",
+    "yarn": "3"
+  },
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json",
+    "copy": "cp -R ./public ./build",
+    "clean": "rm -Rf ./build && mkdir ./build",
+    "dev": "ts-node-dev --respawn ./src/index.ts",
+    "start": "yarn clean && yarn build && yarn copy && node ./build/index.js"
+  },
+  "dependencies": {
+    "@koa/bodyparser": "5.0.0",
+    "@koa/cors": "4.0.0",
+    "@koa/router": "12.0.0",
+    "class-transformer": "0.5.1",
+    "dotenv": "16.3.1",
+    "got": "13.0.0",
+    "koa": "2.14.2",
+    "koa-static": "5.0.0"
+  },
+  "devDependencies": {
+    "@ivangabriele/prettier-config": "3.1.0",
+    "@tsconfig/node20": "20.1.2",
+    "@types/koa": "2.13.9",
+    "@types/koa-static": "4.0.2",
+    "@types/koa__cors": "4.0.1",
+    "@types/koa__router": "12.0.1",
+    "prettier": "3.0.3",
+    "ts-node-dev": "2.0.0",
+    "typescript": "5.2.2"
+  },
+  "packageManager": "yarn@3.6.4",
+  "prettier": "@ivangabriele/prettier-config",
+  "author": {
+    "name": "Ivan Gabriele",
+    "email": "ivan.gabriele@gmail.com",
+    "url": "https://www.ivangabriele.com"
+  },
+  "bugs": {
+    "url": "https://github.com/ivangabriele/openai-forge-vsce/issues"
+  },
+  "categories": [
+    "Other"
+  ],
+  "homepage": "https://github.com/ivangabriele/openai-forge-vsce#readme",
+  "icon": "./assets/icons/x512.png",
+  "keywords": [
+    "automation",
+    "chatgpt",
+    "openai"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ivangabriele/openai-forge-vsce.git"
+  }
+}

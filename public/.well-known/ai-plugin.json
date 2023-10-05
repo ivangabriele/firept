@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "FirePT",
+  "name_for_model": "FirePT",
+  "description_for_human": "Evaluate code. Manage you current working directory. Online search and browsing.",
+  "description_for_model": "Help the user by: evaluating source code; listing, reading and writing their current project files; searching online and browsing URLs.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "http://localhost:3333/.well-known/openapi.yaml"
+  },
+  "contact_email": "ivan.gabriele@gmail.com",
+  "legal_info_url": "https://raw.githubusercontent.com/ivangabriele/firept/main/CODE_OF_CONDUCT.md",
+  "logo_url": "http://localhost:3333/images/logo.png"
+}
