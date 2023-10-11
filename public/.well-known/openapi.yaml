@@ -7,10 +7,34 @@ servers:
   - url: http://localhost:3333
 
 paths:
+  /web/fetch:
+    get:
+      operationId: getWebFetch
+      summary: Get web page content as Markdown from an URL
+      parameters:
+        - in: query
+          name: url
+          description: URL to fetch from
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getWebFetchResponse'
+        '400':
+          description: KO
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
+
   /web/search:
     get:
       operationId: getWebSearch
-      summary: Get web search engine results from a query.
+      summary: Get web search engine results from a query
       parameters:
         - in: query
           name: query
@@ -24,9 +48,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/getWebSearchResponse'
+        '400':
+          description: KO
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorResponse'
 
 components:
   schemas:
+    errorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message
+
+    getWebFetchResponse:
+      type: object
+      properties:
+        sourceAsMarkdown:
+          type: string
+          description: Web page source as simplified Markdown
+
     getWebSearchResponse:
       type: object
       properties:

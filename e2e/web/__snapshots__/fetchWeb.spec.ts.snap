@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`E2E tests should fetch and convert web page from /web/fetch 1`] = `"{"sourceAsMarkdown":"# Example Domain\\n\\nThis domain is for use in illustrative examples in documents. You may use this domain in literature without prior coordination or asking for permission.\\n\\n[More information...](https://www.iana.org/domains/example)"}"`;

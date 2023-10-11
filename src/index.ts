@@ -6,35 +6,60 @@ import Router from '@koa/router'
 import serve from 'koa-static'
 
 import { searchWeb } from './actions/searchWeb.js'
+import { fetchWeb } from './actions/fetchWeb.js'
 
-const app = new Koa()
-const router = new Router()
+const PORT = process.env.PORT || 3333
 
-router
-  .get('/', (ctx, next) => {
-    ctx.body = {}
-  })
-  .get('/web/search', async (ctx, next) => {
-    const results = await searchWeb(String(ctx.request.query.query))
+export function start() {
+  const app = new Koa()
+  const router = new Router()
 
-    ctx.response.body = results
-  })
+  router
+    .get('/', (ctx, next) => {
+      ctx.body = {}
+    })
 
-app
-  .use(bodyParser())
-  .use(
-    cors({
-      allowHeaders: '*',
-      allowMethods: '*',
-      origin: '*',
-    }),
-  )
-  .use(
-    serve('./public', {
-      hidden: true,
-    }),
-  )
-  .use(router.routes())
-// .use(router.allowedMethods())
+    .get('/web/fetch', async (ctx, next) => {
+      const url = String(ctx.request.query.url)
 
-app.listen(3333)
+      const sourceAsMarkdown = await fetchWeb(url)
+      if (!sourceAsMarkdown) {
+        ctx.response.status = 400
+        ctx.response.body = {
+          error: 'Failed to fetch or convert web page. Please try again from another website.',
+        }
+
+        return
+      }
+
+      ctx.response.body = { sourceAsMarkdown }
+    })
+
+    .get('/web/search', async (ctx, next) => {
+      const query = String(ctx.request.query.query)
+
+      const results = await searchWeb(query)
+
+      ctx.response.body = results
+    })
+
+  app
+    .use(bodyParser())
+    .use(
+      cors({
+        allowHeaders: '*',
+        allowMethods: '*',
+        origin: '*',
+      }),
+    )
+    .use(
+      serve('./public', {
+        hidden: true,
+      }),
+    )
+    .use(router.routes())
+
+  app.listen(PORT, () => console.info('[FirePT]', `Server listening on port ${PORT}.`))
+}
+
+start()
