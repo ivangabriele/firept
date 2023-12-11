@@ -460,12 +460,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ivangabriele/prettier-config@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@ivangabriele/prettier-config@npm:3.1.0"
+"@ivangabriele/prettier-config@npm:4.0.1":
+  version: 4.0.1
+  resolution: "@ivangabriele/prettier-config@npm:4.0.1"
   peerDependencies:
-    prettier: ^2.0.0
-  checksum: 9856bbe8555943615a6989e2bfc0a174566ec2d536d7fe2b376084b873523fef03d2c18553f1768ac37ea27ccab843600cd68ff19af34ba56b7ce98d77fd8f94
+    prettier: ^3.0.0
+  checksum: c4f31951394c4b53dd57933c0fabce323f10ca96b2489df75af9c89c7a221faea950a15f54a3958e57a916734bb2c036307c11d3aa3a5fc17795080b6717874c
   languageName: node
   linkType: hard
 
@@ -2559,7 +2559,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "firept@workspace:."
   dependencies:
-    "@ivangabriele/prettier-config": 3.1.0
+    "@ivangabriele/prettier-config": 4.0.1
     "@koa/bodyparser": 5.0.0
     "@koa/cors": 4.0.0
     "@koa/router": 12.0.0
