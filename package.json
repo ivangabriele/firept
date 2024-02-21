@@ -37,7 +37,7 @@
     "@types/kill-port": "2.0.1",
     "@types/koa": "2.13.9",
     "@types/koa-static": "4.0.2",
-    "@types/koa__cors": "4.0.1",
+    "@types/koa__cors": "5.0.0",
     "@types/koa__router": "12.0.1",
     "@types/tcp-port-used": "1.0.2",
     "@types/turndown": "5.0.2",
