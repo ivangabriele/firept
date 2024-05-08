@@ -6,7 +6,7 @@
   "type": "module",
   "engines": {
     "node": ">=20",
-    "yarn": "3"
+    "yarn": "4"
   },
   "scripts": {
     "build": "rm -Rf ./build && mkdir ./build && cp -R ./public ./build && tsc -p ./tsconfig.build.json",
@@ -50,7 +50,7 @@
     "ts-node-dev": "2.0.0",
     "typescript": "5.2.2"
   },
-  "packageManager": "yarn@3.6.4",
+  "packageManager": "yarn@4.2.2",
   "prettier": "@ivangabriele/prettier-config",
   "author": {
     "name": "Ivan Gabriele",
