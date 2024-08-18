@@ -11,7 +11,7 @@
   "bin": "./dist/index.js",
   "scripts": {
     "build": "rm -Rf ./dist && mkdir ./dist && cp -R ./public ./dist && tsc -p ./tsconfig.build.json && yarn build:openapi",
-    "build:openapi": "node ./scripts/dist/generateOpenApiFile.js",
+    "build:openapi": "node ./scripts/build/generateOpenApiFile.js",
     "bundle": "rm -Rf ./dist && yarn build && rollup --config ./config/rollup.config.js",
     "dev": "node --loader ts-node/esm --watch ./src/index.ts",
     "dist:": "rm -Rf ./dist && yarn build && rollup --config ./config/rollup.config.js && yarn build && pkg ./dist/firept.cjs -d -o ./dist/forge -t node18-linux-x64",
