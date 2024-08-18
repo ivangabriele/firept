@@ -2,7 +2,7 @@ openapi: "3.1.0"
 info:
   title: "FirePT"
   description: "Expose your codebase workspace through a protected public API."
-  version: "0.0.0"
+  version: "0.1.0"
 servers:
   - url: "https://monitorfish.publichost.org"
 paths: {}

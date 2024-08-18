@@ -31,11 +31,4 @@ export const WorkspaceController = {
       await next()
     }
   },
-
-  async meta(ctx: Context) {
-    const result = await WorkspaceActions.meta()
-
-    ctx.response.status = 200
-    ctx.response.body = result
-  },
 }

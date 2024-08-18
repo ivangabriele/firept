@@ -7,23 +7,24 @@ import { globby } from 'globby'
 import { ResponseError } from '../errors/ResponseError.js'
 import { getAbsolutePath } from '../utils/getAbsolutePath.js'
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 type DirectoryTreeNode = Record<string, any>
 
 function getDirectoryTreeFromDirectoryPaths(directories: string[]): Record<string, DirectoryTreeNode> {
   const tree = {}
 
-  directories.forEach((dir) => {
+  for (const dir of directories) {
     const parts = dir.split('/')
     let currentLevel = tree
 
-    parts.forEach((part) => {
+    for (const part of parts) {
       if (!currentLevel[part]) {
         currentLevel[part] = {}
       }
 
       currentLevel = currentLevel[part]
-    })
-  })
+    }
+  }
 
   return tree
 }
@@ -32,11 +33,12 @@ function getDirectoryTreeAsYaml(tree: Record<string, DirectoryTreeNode>, indent 
   return Object.keys(tree)
     .map((key) => {
       const subtree = tree[key]
+
       if (Object.keys(subtree).length > 0) {
-        return `${indent}- ${key}\n${getDirectoryTreeAsYaml(subtree, indent + '  ')}`
-      } else {
-        return `${indent}- ${key}`
+        return `${indent}- ${key}\n${getDirectoryTreeAsYaml(subtree, `${indent}  `)}`
       }
+
+      return `${indent}- ${key}`
     })
     .join('\n')
 }
@@ -45,8 +47,6 @@ export const FileSystemActions = {
   async list(relativePath: string | undefined): Promise<string[]> {
     try {
       const absolutePath = getAbsolutePath(relativePath)
-
-      console.log('absolutePath', absolutePath)
 
       const paths = await globby(['*', '!.git/**'], {
         cwd: absolutePath,
@@ -87,8 +87,9 @@ export const FileSystemActions = {
     }
   },
 
-  async create(relativePath: string, source: string | undefined = '', isDirectory: boolean): Promise<undefined> {
+  async create(relativePath: string, source: string | undefined, isDirectory: boolean): Promise<undefined> {
     try {
+      const controlledSource = source ?? ''
       const absolutePath = getAbsolutePath(relativePath)
 
       if (isDirectory) {
@@ -99,7 +100,7 @@ export const FileSystemActions = {
 
       const fileDirectoryAbsolutePath = dirname(absolutePath)
       await fs.mkdir(fileDirectoryAbsolutePath, { recursive: true })
-      await fs.writeFile(absolutePath, source)
+      await fs.writeFile(absolutePath, controlledSource)
 
       return undefined
     } catch (err) {

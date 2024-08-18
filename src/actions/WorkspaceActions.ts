@@ -3,24 +3,9 @@ import { promises as fs } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { ResponseError } from '../errors/ResponseError.js'
-import type { FireptConfig } from '../types.js'
 import { getAbsolutePath } from '../utils/getAbsolutePath.js'
 
 export const WorkspaceActions = {
-  async meta(): Promise<FireptConfig['meta']> {
-    try {
-      const absolutePath = getAbsolutePath('firept.jsonc')
-      const content = await fs.readFile(absolutePath, 'utf-8')
-      const contentAsJson = JSON.parse(content)
-
-      return contentAsJson
-    } catch (err) {
-      throw err instanceof Error
-        ? ResponseError.fromError(err)
-        : new ResponseError(`Failed to read \`firept.jsonc\`. Original error: \`${err}\`.`)
-    }
-  },
-
   async execute(
     command: string,
     path: string | undefined,
