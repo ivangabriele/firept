@@ -8,9 +8,12 @@
     "node": ">=20",
     "npm": "10"
   },
-  "bin": "./dist/index.js",
+  "bin": {
+    "fire": "./dist/cli.js",
+    "firept": "./dist/cli.js"
+  },
   "scripts": {
-    "build": "rm -Rf ./dist && mkdir ./dist && cp -R ./public ./dist && tsc -p ./tsconfig.build.json && yarn build:openapi",
+    "build": "rm -Rf ./dist && mkdir ./dist && yarn build:openapi && cp -R ./public ./dist && tsc -p ./tsconfig.build.json && chmod +x ./dist/cli.js",
     "build:openapi": "node ./scripts/build/generateOpenApiFile.js",
     "bundle": "rm -Rf ./dist && yarn build && rollup --config ./config/rollup.config.js",
     "dev": "node --loader ts-node/esm --watch ./src/index.ts",

@@ -281,5 +281,3 @@ export function start() {
     })
   })
 }
-
-start()
