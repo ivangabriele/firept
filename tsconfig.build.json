@@ -4,5 +4,6 @@
     "noEmit": false,
     "outDir": "./build"
   },
-  "include": ["./src/**/*"]
+  "exclude": ["./**/*.spec.ts", "./**/*.test.ts"],
+  "include": ["./src/**/*", "./typings/**/*.d.ts"]
 }

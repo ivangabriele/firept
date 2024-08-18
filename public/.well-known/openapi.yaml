@@ -1,91 +1,108 @@
-openapi: 3.0.1
+openapi: "3.1.0"
 info:
-  title: FirPT Plugin
-  description: ChatGPT plugin to give ChatGPT extra powers.
-  version: 'v1'
+  title: "FirePT"
+  description: "Expose your codebase workspace through a protected public API."
+  version: "1.0.0"
 servers:
-  - url: http://localhost:3333
-
+  - url: "https://monitorfish.publichost.org"
 paths:
-  /web/fetch:
-    get:
-      operationId: getWebFetch
-      summary: Get web page content as Markdown from an URL
-      parameters:
-        - in: query
-          name: url
-          description: URL to fetch from
-          schema:
-            type: string
+  /file-system/list:
+    post:
+      operationId: "fileSystemList"
+      description: "List files in a directory."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                path:
+                  type: "string"
+                  description: "Directory path."
+              required:
+                - "path"
       responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/getWebFetchResponse'
-        '400':
-          description: KO
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorResponse'
-
-  /web/search:
-    get:
-      operationId: getWebSearch
-      summary: Get web search engine results from a query
-      parameters:
-        - in: query
-          name: query
-          description: Query to search for
-          schema:
-            type: string
+        200:
+          description: "List of file paths."
+  /file-system/read:
+    post:
+      operationId: "fileSystemRead"
+      description: "Read a file."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                path:
+                  type: "string"
+                  description: "File path."
+              required:
+                - "path"
       responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/getWebSearchResponse'
-        '400':
-          description: KO
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errorResponse'
-
+        200:
+          description: "File content."
+  /file-system/create:
+    post:
+      operationId: "fileSystemCreate"
+      description: "Create a file or directory."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                path:
+                  type: "string"
+                  description: "File path. If the path ends with a `/`, a directory will be created."
+                source:
+                  type: "string"
+                  description: "File content."
+              required:
+                - "path"
+      responses:
+        201:
+          description: "File or directory created."
+  /file-system/update:
+    post:
+      operationId: "fileSystemUpdate"
+      description: "Update a file."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                path:
+                  type: "string"
+                  description: "File path."
+                source:
+                  type: "string"
+                  description: "File content."
+              required:
+                - "path"
+                - "source"
+      responses:
+        204:
+          description: "File updated."
+  /file-system/delete:
+    post:
+      operationId: "fileSystemDelete"
+      description: "Delete a file or directory."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                path:
+                  type: "string"
+                  description: "File path. If the path ends with a `/`, a directory will be created."
+              required:
+                - "path"
+      responses:
+        204:
+          description: "File or directory deleted."
 components:
-  schemas:
-    errorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error message
-
-    getWebFetchResponse:
-      type: object
-      properties:
-        sourceAsMarkdown:
-          type: string
-          description: Web page source as simplified Markdown
-
-    getWebSearchResponse:
-      type: object
-      properties:
-        searchResults:
-          type: array
-          description: Ranked list of websites results
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-                description: Website title
-              description:
-                type: string
-                description: Website description
-              url:
-                type: string
-                description: Website URL
+  schemas: {}
+tags: []

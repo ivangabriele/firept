@@ -2,16 +2,16 @@
   "schema_version": "v1",
   "name_for_human": "FirePT",
   "name_for_model": "FirePT",
-  "description_for_human": "Evaluate code. Manage you current working directory. Online search and browsing.",
-  "description_for_model": "Help the user by: evaluating source code; listing, reading and writing their current project files; searching online and browsing URLs.",
+  "description_for_human": "Use ChatGPT to manage your codebase workspace.",
+  "description_for_model": "Plugin for managing a codebase workspace, you can read, create, edit, delete, and list files. You can also run CLI commands to manage dependencies, build and run the program, run tests, evaluate code, etc. All the functions are run within the workspace context.",
   "auth": {
     "type": "none"
   },
   "api": {
     "type": "openapi",
-    "url": "http://localhost:3333/.well-known/openapi.yaml"
+    "url": "https://firept.ngrok.app/.well-known/openapi.yaml"
   },
   "contact_email": "ivan.gabriele@gmail.com",
   "legal_info_url": "https://raw.githubusercontent.com/ivangabriele/firept/main/CODE_OF_CONDUCT.md",
-  "logo_url": "http://localhost:3333/images/logo.png"
+  "logo_url": "https://firept.ngrok.app/images/logo.png"
 }

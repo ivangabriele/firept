@@ -1,11 +1,15 @@
 {
-  "extends": "@tsconfig/node20/tsconfig.json",
+  "extends": "@ivangabriele/tsconfig-node",
   "compilerOptions": {
-    "esModuleInterop": true,
+    "checkJs": true,
     "noEmit": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ESNext"
+    "target": "ES2023"
   },
-  "include": ["./config/**/*", "./e2e/**/*", "./src/**/*"]
+  "exclude": ["./dist/*", "./node_modules/*", "./workspace/*"],
+  "include": ["**/*"],
+  "ts-node": {
+    "esm": true,
+    "swc": true,
+    "transpileOnly": true
+  }
 }
