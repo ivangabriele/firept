@@ -162,7 +162,7 @@ export const FileSystemActions = {
     const directories = await globby('**/', {
       cwd: absolutePath,
       dot: true,
-      ignore: ['./.git/', './datascience/', './infra/'],
+      ignore: ['./.git/'],
       followSymbolicLinks: false,
       gitignore: true,
       onlyDirectories: true,
