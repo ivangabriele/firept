@@ -4,8 +4,8 @@ import { program } from 'commander'
 
 import { start } from './server.js'
 
-program.name('ph').description('PublicHost CLI.').version('0.0.0')
+program.name('fire').description('FirePT').version('0.1.0')
 
-program.command('start').description('Start listening for incoming requests.').action(start)
+program.command('start').description('Start FirePT to APIfy your current directory.').action(start)
 
 program.parse(process.argv)
