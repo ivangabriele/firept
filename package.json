@@ -28,7 +28,8 @@
     "test:e2e": "yarn node --experimental-vm-modules $(yarn bin jest) -c ./config/jest.e2e.config.js",
     "test:lint": "biome check --apply --files-ignore-unknown=true --no-errors-on-unmatched .",
     "test:unit": "WORKSPACE_PATH=$PWD/workspace jest --config ./config/jest.unit.config.ts --runInBand",
-    "test:unit:watch": "yarn test:unit --watch"
+    "test:unit:watch": "yarn test:unit --watch",
+    "preversion": "yarn build"
   },
   "dependencies": {
     "@isaacs/ttlcache": "1.4.1",
