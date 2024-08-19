@@ -3,6 +3,20 @@
 </p>
 <h1 align="center">FirePT</h1>
 <h3 align="center">APIfy your project workspace, allowing AI to interact with it.</h3>
+<p align="center">
+  <a href="https://www.npmjs.com/package/firept">
+    <img alt="NPM Version" src="https://img.shields.io/npm/v/firept?style=for-the-badge" />
+  </a>
+  <a href="https://github.com/ivangabriele/firept/blob/main/LICENSE">
+    <img alt="AGPL-3.0 license" src="https://img.shields.io/github/license/ivangabriele/firept?style=for-the-badge&labelColor=000">
+  </a>
+  <a href="https://github.com/ivangabriele/firept/actions?query=branch%3Amain+workflow%3ACheck">
+    <img alt="CI Check Workflow" src="https://img.shields.io/github/actions/workflow/status/ivangabriele/firept/check.yml?branch=main&label=Check&style=for-the-badge&labelColor=000">
+  </a>
+  <a href="https://github.com/ivangabriele/firept/actions?query=branch%3Amain+workflow%3AE2E">
+    <img alt="CI E2E Workflow" src="https://img.shields.io/github/actions/workflow/status/ivangabriele/firept/e2e.yml?branch=main&label=E2E&style=for-the-badge&labelColor=000">
+  </a>
+</p>
 
 ---
 
