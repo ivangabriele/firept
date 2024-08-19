@@ -7,7 +7,8 @@
 ---
 
 > [!NOTE]  
-> This is a work in progress and is still under heavy testing. This doesn't work out of the box yet.
+> This is a work in progress and is still under heavy testing.  
+> This doesn't work out of the box yet.
 
 - [Introduction](#introduction)
 - [Features](#features)
@@ -49,7 +50,10 @@ All features can only be run within the declared project directory.
 - [x] Delete files and directories
 - [x] Move (rename) files and directories
 - [x] Run shell commands
-- [ ] Local, per-project config file
+- [x] Local, per-project config file
+- [ ] Actions tracking (to help AI keep track of previous actions when starting new chat sessions)
+- [ ] Run shell commands in background pods (to avoid blocking the server response on long-running and forever-running
+      commands) with logs, exit and kill endpoints
 - [ ] Read and comment Github issues
 - [ ] Read and comment Github pull requests
 - [ ] Partially read files (from line to line)
@@ -106,7 +110,8 @@ workspace:
 ```
 
 > [!IMPORTANT]  
-> **!!! DO NOT COMMIT THE `firept.yml` FILE TO YOUR REPOSITORY. ADD IT TO YOUR `.gitignore` FILE !!!**
+> **!!! DO NOT COMMIT THE `firept.yml` FILE TO YOUR REPOSITORY.  
+> ADD IT TO YOUR `.gitignore` FILE !!!**
 
 You can also add it you global `.gitignore` file to avoid polluting your team repo with your local settings.
 
