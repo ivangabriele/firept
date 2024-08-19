@@ -1,3 +1,3 @@
 import { server } from './server.js'
 
-server.start()
+await server.start()

@@ -15,7 +15,11 @@
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
+  - [Setting up PublicHost](#setting-up-publichost)
+  - [Preparing the workspace](#preparing-the-workspace)
   - [Running FirePT](#running-firept)
+  - [Using FirePT](#using-firept)
+    - [With OpenAI Custom GPT](#with-openai-custom-gpt)
 - [Contributing](#contributing)
 
 ---
@@ -75,13 +79,50 @@ Install FirePT globally using npm:
 npm i -g firept
 ```
 
+### Setting up PublicHost
+
+**To be updated.**
+
+### Preparing the workspace
+
+Add a `firept.yml` (or `firept.yaml`) file to the root of your project directory.
+
+```yaml
+server:
+  apiKey: ****
+  port: 9999
+
+publichost:
+  apiKey: ****
+  host: publichost.org
+  subdomain: your-subdomain
+
+# The following is optional
+workspace:
+  # .gitignore files are already ignored by FirePT
+  ignoredFiles:
+    - ./.yarn/**
+    - ...
+```
+
+> [!IMPORTANT]  
+> **!!! DO NOT COMMIT THE `firept.yml` FILE TO YOUR REPOSITORY. ADD IT TO YOUR `.gitignore` FILE !!!**
+
+You can also add it you global `.gitignore` file to avoid polluting your team repo with your local settings.
+
 ### Running FirePT
 
-To start the FirePT server, run:
+To start the FirePT server, run (within your project directory):
 
 ```sh
-firept
+fire start
 ```
+
+### Using FirePT
+
+#### With OpenAI Custom GPT
+
+**To be updated.**
 
 ## Contributing
 

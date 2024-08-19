@@ -18,12 +18,12 @@ const options = {
       description: 'Expose your codebase workspace through a protected public API.',
       version: packageJson.version,
     },
-    servers: [{ url: 'https://monitorfish.publichost.org' }]
+    servers: [{ url: 'https://{{PUBLICHOST_SUBDOMAIN}}.{{PUBLICHOST_HOST}}' }],
   },
   components: {
-    schemas: {}
+    schemas: {},
   },
-  apis: ['./src/index.ts'],
+  apis: ['./src/router.ts'],
   failOnErrors: true,
 }
 
@@ -31,8 +31,8 @@ const openApiSpecification = swaggerJsdoc(options)
 const openApiSpecificationAsYaml = yaml.stringify({
   ...openApiSpecification,
   components: {
-    schemas: {}
-  }
+    schemas: {},
+  },
 })
 
 await fs.writeFile(OPEN_API_FILE_PATH, openApiSpecificationAsYaml, 'utf8')

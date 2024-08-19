@@ -1,0 +1,3 @@
+export enum CacheKey {
+  OPENAPI_DOCUMENT_AS_YAML = 'OPENAPI_DOCUMENT_AS_YAML',
+}

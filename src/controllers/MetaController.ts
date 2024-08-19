@@ -7,7 +7,7 @@ import { ResponseError } from '../errors/ResponseError.js'
 export const MetaController = {
   async getOpenApiDocument(ctx: Context, next: Next) {
     try {
-      const result = OpenApiActions.getDocument()
+      const result = await OpenApiActions.getDocument()
 
       ctx.status = 200
       ctx.body = result
