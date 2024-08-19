@@ -23,10 +23,12 @@ const config = {
     '^.+\\.m?[tj]sx?$': [
       'ts-jest',
       {
+        // biome-ignore lint/style/useNamingConvention: <explanation>
         useESM: true,
       },
     ],
   },
 }
 
+// biome-ignore lint/style/noDefaultExport: <explanation>
 export default config

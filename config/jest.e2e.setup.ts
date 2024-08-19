@@ -1,9 +1,10 @@
-import { spawn } from 'child_process'
+import { spawn } from 'node:child_process'
 import { B } from 'bhala'
 import tcpPortUsed from 'tcp-port-used'
 
 const { PORT } = process.env
 
+// biome-ignore lint/style/noDefaultExport: <explanation>
 export default async () => {
   B.info('[E2E]', 'Starting server...')
   spawn('yarn', ['start'], {

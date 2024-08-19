@@ -1,4 +1,4 @@
-import { promises as fs, existsSync } from 'fs'
+import { promises as fs, existsSync } from 'node:fs'
 import { getAbsolutePath } from '../../utils/getAbsolutePath.js'
 import { FileSystemActions } from '../FileSystemActions.js'
 

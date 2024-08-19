@@ -22,6 +22,7 @@ export class ResponseError extends Error {
     }
   }
 
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   static fromError(error: any, status = 500): ResponseError {
     return new ResponseError(String(error?.message), status, error)
   }

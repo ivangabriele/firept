@@ -4,6 +4,9 @@
   "files": {
     "ignore": ["./src/libs/workspaceManager/schema.ts", "./typings/global.d.ts"]
   },
+  "javascript": {
+    "globals": ["afterAll", "afterEach", "beforeAll", "beforeEach", "describe", "expect", "it", "test"]
+  },
   "overrides": [
     {
       "include": ["**/constants/**", "**/constants.ts", "**/types.ts", "**/*.types.ts", "typings/**/*.d.ts"],

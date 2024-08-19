@@ -15,4 +15,5 @@ const jestConfig: Config = {
   transformIgnorePatterns: ['node_modules/?!(del)/'],
 }
 
+// biome-ignore lint/style/noDefaultExport: <explanation>
 export default jestConfig
