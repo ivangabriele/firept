@@ -41,9 +41,16 @@ export const server = {
     koaApp.listen(fireptConfig.server.port, () => {
       B.info('[FirePT]', `Server listening on port ${fireptConfig.server.port}.`)
 
-      startPublicHost(fireptConfig.publichost.host, fireptConfig.publichost.subdomain, fireptConfig.publichost.apiKey, {
-        localhostAppPort: fireptConfig.server.port.toString(),
-      })
+      if (fireptConfig.publichost) {
+        startPublicHost(
+          fireptConfig.publichost.host,
+          fireptConfig.publichost.subdomain,
+          fireptConfig.publichost.apiKey,
+          {
+            localhostAppPort: fireptConfig.server.port.toString(),
+          },
+        )
+      }
     })
   },
 }

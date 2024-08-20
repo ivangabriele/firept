@@ -157,4 +157,5 @@ dist
 
 /dist
 
-/firept.*
+/firept.json
+/firept.jsonc

@@ -11,11 +11,11 @@ const jestConfig: Config = {
   rootDir: '..',
   silent: false,
   testEnvironment: 'node',
-  testMatch: ['<rootDir>/src/**/__tests__/**/*.test.ts'],
+  testMatch: ['<rootDir>/e2e/**/*.spec.ts'],
   transform: {
     '.*\\.(j|t)s$': '@swc/jest',
   },
-  transformIgnorePatterns: ['node_modules/?!(del)/'],
+  transformIgnorePatterns: ['node_modules/?!(ky)/'],
 }
 
 // biome-ignore lint/style/noDefaultExport: <explanation>

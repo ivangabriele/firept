@@ -8,6 +8,12 @@ export interface FireptConfig {
     host: string
     subdomain: string
   }
+  repository?: {
+    provider: 'github'
+    personalAccessToken: string
+    owner: string
+    name: string
+  }
   workspace?: Partial<{
     ignoredFiles: string[]
   }>

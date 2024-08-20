@@ -1,0 +1,17 @@
+server:
+  apiKey: '****'
+  port: 9999
+
+publichost:
+  apiKey: '****'
+  host: publichost.org
+  subdomain: firept
+
+repository:
+  provider: github
+  personalAccessToken: '****'
+  owner: ivangabriele
+  name: firept
+
+workspace:
+  ignoreFiles: []

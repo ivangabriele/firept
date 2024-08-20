@@ -17,5 +17,11 @@ jobs:
           node-version: 20
       - name: Install
         run: yarn
+      - name: Prepare
+        run: |
+          yarn test:e2e:setup
+          yarn build
+          yarn start &
+          while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' http://localhost:9999/)" != "200" ]]; do sleep 5; done
       - name: Test
         run: yarn test:e2e
