@@ -1,6 +1,6 @@
 {
 	"name": "firept",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"license": "AGPL-3.0-only",
 	"description": "APIfy your local workspace to help AI LLMs orchestrate your daily tasks",
 	"type": "module",
