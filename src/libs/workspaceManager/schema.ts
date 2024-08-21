@@ -37,6 +37,29 @@ export const FIREPT_CONFIG_SCHEMA = {
           required: ['apiKey', 'host', 'subdomain'],
           additionalProperties: false,
         },
+        customPublicUrl: {
+          type: 'string',
+        },
+        repository: {
+          type: 'object',
+          properties: {
+            provider: {
+              type: 'string',
+              const: 'github',
+            },
+            personalAccessToken: {
+              type: 'string',
+            },
+            owner: {
+              type: 'string',
+            },
+            name: {
+              type: 'string',
+            },
+          },
+          required: ['provider', 'personalAccessToken', 'owner', 'name'],
+          additionalProperties: false,
+        },
         workspace: {
           type: 'object',
           properties: {
@@ -50,7 +73,7 @@ export const FIREPT_CONFIG_SCHEMA = {
           additionalProperties: false,
         },
       },
-      required: ['server', 'publichost'],
+      required: ['server'],
       additionalProperties: false,
     },
   },

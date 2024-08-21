@@ -6,15 +6,14 @@ import type { Defined } from '../../types.js'
 import type { FireptConfig } from './types.js'
 
 const CONFIG_FILE_NAMES = ['firept.yml', 'firept.yaml']
-// Used to inject the workspace path in unit tests
-const { WORKSPACE_PATH } = process.env
+const { E2E_TEST_WORKSPACE_PATH, E2E_REPOSITORY_PERSONAL_ACCESS_TOKEN, UNIT_TEST_WORKSPACE_PATH } = process.env
 
 class WorkspaceManager {
   #absoluteRootPath: string | undefined
   #config: FireptConfig | undefined
 
   get definedAbsoluteRootPath(): string {
-    const absoluteRootPath = WORKSPACE_PATH ?? this.#absoluteRootPath
+    const absoluteRootPath = UNIT_TEST_WORKSPACE_PATH ?? this.#absoluteRootPath
     if (!absoluteRootPath) {
       B.error('[FirePT]', '`WorkspaceManager.#absoluteRootPath` is undefined. This should never happen.')
 
@@ -57,14 +56,21 @@ class WorkspaceManager {
       process.exit(1)
     }
 
-    return this.definedConfig.repository
+    return {
+      ...this.definedConfig.repository,
+      ...(E2E_REPOSITORY_PERSONAL_ACCESS_TOKEN
+        ? {
+            personalAccessToken: E2E_REPOSITORY_PERSONAL_ACCESS_TOKEN,
+          }
+        : {}),
+    }
   }
 
   get hasDefinedRepository(): boolean {
     return !!this.definedConfig.repository
   }
 
-  async loadConfig(absolutePath: string = WORKSPACE_PATH ?? process.cwd()): Promise<FireptConfig | undefined> {
+  async loadConfig(absolutePath: string = E2E_TEST_WORKSPACE_PATH ?? process.cwd()): Promise<FireptConfig | undefined> {
     for (const configFile of CONFIG_FILE_NAMES) {
       if (existsSync(join(absolutePath, configFile))) {
         return await this.#readAndSetConfig(join(absolutePath, configFile))

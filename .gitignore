@@ -153,8 +153,18 @@ dist
 !.yarn/versions
 
 ################################################################################
+# Env files
+
+.env*
+.flaskenv*
+!.env.example
+!.env.project
+!.env.vault
+
+################################################################################
 # Custom
 
 /dist
+!/scripts/build/*
 
 /firept.yml

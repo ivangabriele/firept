@@ -177,7 +177,57 @@ koaRouter
    */
   .post('/file-system/move', FileSystemController.move)
 
-  .post('/github/issue/read', GithubController.readIssue)
+  /**
+   * @openapi
+   * /github/issues/read:
+   *   get:
+   *     operationId: githubIssuesRead
+   *     description: Get a GitHub issue.
+   *     parameters:
+   *       - in: query
+   *         name: issueNumber
+   *         description: Issue number.
+   *         schema:
+   *           type: integer
+   *         required: true
+   *     responses:
+   *       200:
+   *         description: GitHub issue.
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 title:
+   *                   type: string
+   *                   description: Issue title.
+   *                 authorLogin:
+   *                   type: string
+   *                   description: Author login.
+   *                 authorRole:
+   *                   schema:
+   *                     $ref: '#/components/schemas/GithubUserRole'
+   *                   description: Author role.
+   *                 body:
+   *                   type: string
+   *                   description: Issue body.
+   *                 comments:
+   *                   type: array
+   *                   items:
+   *                     type: object
+   *                     properties:
+   *                       authorLogin:
+   *                         type: string
+   *                         description: Comment author login.
+   *                       authorRole:
+   *                         schema:
+   *                           $ref: '#/components/schemas/GithubUserRole'
+   *                         description: Comment author role.
+   *                       body:
+   *                         type: string
+   *                         description: Comment body.
+   */
+  .get('/github/issues/read', GithubController.readIssue)
 
   /**
    * @openapi

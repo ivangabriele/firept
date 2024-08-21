@@ -2,21 +2,6 @@
   "$schema": "https://biomejs.dev/schemas/1.8.0/schema.json",
   "extends": ["@ivangabriele/biome-config"],
   "files": {
-    "ignore": ["./src/libs/workspaceManager/schema.ts", "./typings/global.d.ts"]
-  },
-  "javascript": {
-    "globals": ["afterAll", "afterEach", "beforeAll", "beforeEach", "describe", "expect", "it", "test"]
-  },
-  "overrides": [
-    {
-      "include": ["**/constants/**", "**/constants.ts", "**/types.ts", "**/*.types.ts"],
-      "linter": {
-        "rules": {
-          "style": {
-            "useNamingConvention": "off"
-          }
-        }
-      }
-    }
-  ]
+    "ignore": ["./src/libs/workspaceManager/schema.ts"]
+  }
 }

@@ -6,16 +6,14 @@ import { validateRequestBody } from '../utils/validateRequestBody.js'
 export const GithubController = {
   async readIssue(ctx: Context, next: Next) {
     try {
-      const { issueNumber } = validateRequestBody<{
-        issueNumber: number
-      }>(ctx.request.body, [['issueNumber', 'number']])
+      const { issueNumber: issueNumberAsString } = validateRequestBody<{
+        issueNumber: string
+      }>(ctx.request.query, [['issueNumber', 'string']])
 
-      const result = await GithubActions.getGithubIssue(issueNumber)
+      const result = await GithubActions.getGithubIssue(Number(issueNumberAsString))
 
       ctx.response.status = 200
-      ctx.response.body = {
-        content: result,
-      }
+      ctx.response.body = result
     } catch (error) {
       ctx.responseError = error instanceof ResponseError ? error : ResponseError.fromError(error)
 

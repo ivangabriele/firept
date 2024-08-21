@@ -68,8 +68,10 @@ All features can only be run within the declared project directory.
 - [ ] Actions tracking (to help AI keep track of previous actions when starting new chat sessions)
 - [ ] Run shell commands in background pods (to avoid blocking the server response on long-running and forever-running
       commands) with logs, exit and kill endpoints
-- [ ] Read and comment Github issues
-- [ ] Read and comment Github pull requests
+- [x] Read Github issues
+- [ ] Comment Github issues
+- [ ] Read Github pull requests
+- [ ] Comment Github pull requests
 - [ ] Partially read files (from line to line)
 - [ ] Partially edit files (from line to line)
 - [ ] Fine-grained feature control (to enable/disable features)

@@ -3,9 +3,29 @@ import { getOctokit } from '../utils/getOctokit.js'
 
 export const GithubActions = {
   async getGithubIssue(issueNumber: number): Promise<{
-    body: string
+    authorLogin: string | null
+    authorRole:
+      | 'COLLABORATOR'
+      | 'CONTRIBUTOR'
+      | 'FIRST_TIMER'
+      | 'FIRST_TIME_CONTRIBUTOR'
+      | 'MANNEQUIN'
+      | 'MEMBER'
+      | 'NONE'
+      | 'OWNER'
+    body: string | null
     comments: Array<{
-      body: string
+      authorLogin: string | null
+      authorRole:
+        | 'COLLABORATOR'
+        | 'CONTRIBUTOR'
+        | 'FIRST_TIMER'
+        | 'FIRST_TIME_CONTRIBUTOR'
+        | 'MANNEQUIN'
+        | 'MEMBER'
+        | 'NONE'
+        | 'OWNER'
+      body: string | null
     }>
     title: string
   }> {
@@ -25,10 +45,17 @@ export const GithubActions = {
         repo: workspaceManager.definedRepository.name,
       })
 
-      const { body, title } = issue
-      const comments = issueComments.map((comment) => ({ body: comment.body || '' }))
-
-      return { body: body || '', comments, title }
+      return {
+        authorLogin: issue.user?.login ?? null,
+        authorRole: issue.author_association,
+        body: issue.body ?? null,
+        comments: issueComments.map((comment) => ({
+          authorLogin: comment.user?.login ?? null,
+          authorRole: comment.author_association,
+          body: comment.body ?? null,
+        })),
+        title: issue.title,
+      }
     } catch (err) {
       throw err instanceof Error ? err : new Error(`Failed to delete file. Original error: \`${err}\`.`)
     }

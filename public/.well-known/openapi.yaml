@@ -4,7 +4,7 @@ info:
   description: "Expose your codebase workspace through a protected public API."
   version: "0.2.0"
 servers:
-  - url: "{{BASE_URL}}"
+  - url: "{{PUBLIC_URL}}"
 paths:
   /:
     get:
@@ -144,6 +144,53 @@ paths:
       responses:
         204:
           description: "File updated."
+  /github/issues/read:
+    get:
+      operationId: "githubIssuesRead"
+      description: "Get a GitHub issue."
+      parameters:
+        - in: "query"
+          name: "issueNumber"
+          description: "Issue number."
+          schema:
+            type: "integer"
+          required: true
+      responses:
+        200:
+          description: "GitHub issue."
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  title:
+                    type: "string"
+                    description: "Issue title."
+                  authorLogin:
+                    type: "string"
+                    description: "Author login."
+                  authorRole:
+                    schema:
+                      $ref: "#/components/schemas/GithubUserRole"
+                    description: "Author role."
+                  body:
+                    type: "string"
+                    description: "Issue body."
+                  comments:
+                    type: "array"
+                    items:
+                      type: "object"
+                      properties:
+                        authorLogin:
+                          type: "string"
+                          description: "Comment author login."
+                        authorRole:
+                          schema:
+                            $ref: "#/components/schemas/GithubUserRole"
+                          description: "Comment author role."
+                        body:
+                          type: "string"
+                          description: "Comment body."
   /meta/project-structure:
     get:
       operationId: "metaProjectStructure"

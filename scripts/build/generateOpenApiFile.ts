@@ -1,9 +1,9 @@
+import { promises as fs } from 'node:fs'
 import { getAbsolutePath } from 'esm-path'
 import yaml from 'json-to-pretty-yaml'
-import { promises as fs } from 'node:fs'
-import swaggerJsdoc from "swagger-jsdoc"
+import swaggerJsdoc from 'swagger-jsdoc'
 
-import { createRequire } from 'module'
+import { createRequire } from 'node:module'
 const require = createRequire(import.meta.url)
 const packageJson = require('../../package.json')
 
@@ -21,7 +21,22 @@ const options = {
     servers: [{ url: '{{PUBLIC_URL}}' }],
   },
   components: {
-    schemas: {},
+    schemas: {
+      // biome-ignore lint/style/useNamingConvention: <explanation>
+      GithubUserRole: {
+        type: 'string',
+        enum: [
+          'COLLABORATOR',
+          'CONTRIBUTOR',
+          'FIRST_TIMER',
+          'FIRST_TIME_CONTRIBUTOR',
+          'MANNEQUIN',
+          'MEMBER',
+          'NONE',
+          'OWNER',
+        ],
+      },
+    },
   },
   apis: ['./src/router.ts'],
   failOnErrors: true,

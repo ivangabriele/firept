@@ -3,8 +3,8 @@ import type { Context, Next } from 'koa'
 
 export function getAuthorizeRequest(apiKey: string) {
   return async function authorizeRequest(ctx: Context, next: Next) {
-    if (ctx.request.url === '/') {
-      next()
+    if (['/', '/favicon.ico'].includes(ctx.request.url)) {
+      await next()
 
       return
     }

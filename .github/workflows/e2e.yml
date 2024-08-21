@@ -22,6 +22,8 @@ jobs:
       - name: Prepare
         run: yarn test:e2e:prepare
       - name: Serve
+        env:
+          E2E_REPOSITORY_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_TOKEN }}
         run: yarn test:e2e:serve
       - name: Test
         run: yarn test:e2e

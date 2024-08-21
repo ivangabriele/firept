@@ -21,4 +21,4 @@ async function waitForServer(leftRetries): Promise<void> {
 
 beforeAll(async () => {
   await waitForServer(10)
-})
+}, 15000)

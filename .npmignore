@@ -5,3 +5,8 @@
 !/LICENSE.md
 !/package.json
 !/README.md
+
+.env*
+.flaskenv*
+!.env.project
+!.env.vault

@@ -5,7 +5,6 @@ import { cache } from '../libs/cache/index.js'
 import { workspaceManager } from '../libs/workspaceManager/index.js'
 
 const OPEN_API_FILE_PATH = getAbsolutePath(import.meta.url, '../../public/.well-known/openapi.yaml')
-const { PUBLIC_URL } = process.env
 
 export const OpenApiActions = {
   async getDocument(): Promise<string> {
@@ -15,10 +14,7 @@ export const OpenApiActions = {
     }
 
     const rawOpenApiDocumentAsYaml = await fs.readFile(OPEN_API_FILE_PATH, 'utf-8')
-    const openApiDocumentAsYaml = rawOpenApiDocumentAsYaml.replace(
-      /{{PUBLIC_URL}}/,
-      PUBLIC_URL ?? workspaceManager.definedPublicUrl,
-    )
+    const openApiDocumentAsYaml = rawOpenApiDocumentAsYaml.replace(/{{PUBLIC_URL}}/, workspaceManager.definedPublicUrl)
 
     cache.set(CacheKey.OPENAPI_DOCUMENT_AS_YAML, openApiDocumentAsYaml)
 
