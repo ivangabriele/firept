@@ -1,9 +1,11 @@
 import { B } from 'bhala'
 import type { Context, Next } from 'koa'
 
+const PUBLIC_PATHS = ['/', '/.well-known/openapi.yaml', '/favicon.ico']
+
 export function getAuthorizeRequest(apiKey: string) {
   return async function authorizeRequest(ctx: Context, next: Next) {
-    if (['/', '/favicon.ico'].includes(ctx.request.url)) {
+    if (PUBLIC_PATHS.includes(ctx.request.url)) {
       await next()
 
       return

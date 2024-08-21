@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="FirePT Logo" height="128" src="public/images/logo.png" />
+  <img alt="FirePT Logo" height="128" src="https://raw.githubusercontent.com/ivangabriele/firept/main/docs/assets/logo.png" />
 </p>
 <h1 align="center">FirePT</h1>
 <h3 align="center">APIfy your project workspace, allowing AI to interact with it.</h3>

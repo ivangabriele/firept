@@ -1,6 +1,7 @@
 import cors from '@koa/cors'
 import { B } from 'bhala'
 import Koa from 'koa'
+import serve from 'koa-static'
 import { start as startPublicHost } from 'publichost'
 
 import { workspaceManager } from './libs/workspaceManager/index.js'
@@ -37,6 +38,12 @@ export const server = {
       .use(parseRequestBody)
       .use(koaRouter.routes())
       .use(handleResponseError)
+      .use(
+        serve('./public', {
+          defer: true,
+          hidden: true,
+        }),
+      )
 
     koaApp.listen(fireptConfig.server.port, () => {
       B.info('[FirePT]', `Server listening on port ${fireptConfig.server.port}.`)
