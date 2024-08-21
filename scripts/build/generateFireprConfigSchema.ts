@@ -1,4 +1,4 @@
-import { promises as fs } from 'fs'
+import { promises as fs } from 'node:fs'
 import { getAbsolutePath } from 'esm-path'
 import { format } from 'prettier'
 import tsJsonSchemaGenerator, { type Config } from 'ts-json-schema-generator'
