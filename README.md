@@ -109,17 +109,29 @@ Add a `firept.yml` (or `firept.yaml`) file to the root of your project directory
 
 ```yaml
 server:
-  apiKey: ****
+  apiKey: '****'
   port: 9999
 
 publichost:
-  apiKey: ****
+  apiKey: '****'
   host: publichost.org
   subdomain: your-subdomain
 
-# The following is optional
+# If you don't use PublicHost but your own localhost public tunneling service (like ngrok or localtunnel):
+# customPublicUrl: 'https://example.org'
+
+# https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api?apiVersion=2022-11-28#authenticating-with-a-personal-access-token
+# https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+repository:
+  provider: github
+  personalAccessToken: '****'
+  owner: your-github-username
+  name: your-repo-name
+
+# The following properties and sub-properties are all optional:
 workspace:
-  # .gitignore files are already ignored by FirePT
+  # `.gitignore` files and `.git` directories are already ignored by FirePT,
+  # these are additional files and directories to ignore:
   ignoredFiles:
     - ./.yarn/**
     - ...

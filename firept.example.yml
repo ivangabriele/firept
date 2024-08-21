@@ -7,6 +7,7 @@ publichost:
   host: publichost.org
   subdomain: firept
 
+# If you don't use PublicHost but your own localhost public tunneling service (like ngrok or localtunnel):
 # customPublicUrl: 'https://example.org'
 
 # https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api?apiVersion=2022-11-28#authenticating-with-a-personal-access-token
@@ -17,5 +18,8 @@ repository:
   owner: ivangabriele
   name: firept
 
+# The following properties and sub-properties are all optional:
 workspace:
+  # `.gitignore` files and `.git` directories are already ignored by FirePT,
+  # these are additional files and directories to ignore:
   ignoreFiles: []
