@@ -26,7 +26,7 @@
     "start": "yarn build && node ./dist/cli.js start",
     "startb": "yarn build && concurrently 'node ./dist/index.js' 'ngrok http --domain=firept.ngrok.app 3333'",
     "test:e2e": "PUBLIC_URL=http://localhost:9999 jest --config ./config/jest.e2e.config.ts --runInBand",
-    "test:e2e:prepare": "yarn build && pushd ./workspace-sample && npm i && popd",
+    "test:e2e:prepare": "yarn build && cd ./workspace-sample && npm i && cd ..",
     "test:e2e:serve": "./scripts/test/serve_e2e.sh",
     "test:e2e:watch": "yarn test:e2e --watch",
     "test:lint": "biome check --write --files-ignore-unknown=true --no-errors-on-unmatched .",
