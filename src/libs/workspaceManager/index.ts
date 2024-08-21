@@ -13,7 +13,7 @@ class WorkspaceManager {
   #absoluteRootPath: string | undefined
   #config: FireptConfig | undefined
 
-  get loadedAbsoluteRootPath(): string {
+  get definedAbsoluteRootPath(): string {
     const absoluteRootPath = WORKSPACE_PATH ?? this.#absoluteRootPath
     if (!absoluteRootPath) {
       B.error('[FirePT]', '`WorkspaceManager.#absoluteRootPath` is undefined. This should never happen.')
@@ -24,7 +24,7 @@ class WorkspaceManager {
     return absoluteRootPath
   }
 
-  get loadedConfig(): FireptConfig {
+  get definedConfig(): FireptConfig {
     if (!this.#config) {
       B.error('[FirePT]', '`WorkspaceManager.#config` is undefined. This should never happen.')
 
@@ -34,21 +34,37 @@ class WorkspaceManager {
     return this.#config
   }
 
+  get definedPublicUrl(): string {
+    const publicBaseUrl = this.definedConfig.publichost
+      ? `https://${this.definedConfig.publichost.subdomain}.${this.definedConfig.publichost.host}`
+      : this.definedConfig.customPublicUrl
+    if (!publicBaseUrl) {
+      B.error(
+        '[FirePT]',
+        'Both `WorkspaceManager.#config.publichost` and `WorkspaceManager.#config.customPublicUrl` are undefined. This should never happen.',
+      )
+
+      process.exit(1)
+    }
+
+    return publicBaseUrl
+  }
+
   get definedRepository(): Defined<FireptConfig['repository']> {
-    if (!this.loadedConfig.repository) {
+    if (!this.definedConfig.repository) {
       B.error('[FirePT]', '`WorkspaceManager.#config.repository` is undefined. This should never happen.')
 
       process.exit(1)
     }
 
-    return this.loadedConfig.repository
+    return this.definedConfig.repository
   }
 
   get hasDefinedRepository(): boolean {
-    return !!this.loadedConfig.repository
+    return !!this.definedConfig.repository
   }
 
-  async loadConfig(absolutePath: string = process.cwd()): Promise<FireptConfig | undefined> {
+  async loadConfig(absolutePath: string = WORKSPACE_PATH ?? process.cwd()): Promise<FireptConfig | undefined> {
     for (const configFile of CONFIG_FILE_NAMES) {
       if (existsSync(join(absolutePath, configFile))) {
         return await this.#readAndSetConfig(join(absolutePath, configFile))
@@ -65,7 +81,7 @@ class WorkspaceManager {
     const source = await fs.readFile(absolutePath, 'utf-8')
     const config = parse(source)
 
-    this.#absoluteRootPath = WORKSPACE_PATH ?? dirname(absolutePath)
+    this.#absoluteRootPath = dirname(absolutePath)
     this.#config = config
 
     return config

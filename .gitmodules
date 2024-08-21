@@ -1,0 +1,3 @@
+[submodule "workspace-sample"]
+	path = workspace-sample
+	url = https://github.com/ivangabriele/firept-workspace-sample.git

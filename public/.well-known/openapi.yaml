@@ -4,7 +4,7 @@ info:
   description: "Expose your codebase workspace through a protected public API."
   version: "0.2.0"
 servers:
-  - url: "https://{{PUBLICHOST_SUBDOMAIN}}.{{PUBLICHOST_HOST}}"
+  - url: "{{BASE_URL}}"
 paths:
   /:
     get:

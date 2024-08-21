@@ -11,5 +11,10 @@ describe('/file-system/list', () => {
       .json()
 
     expect(result.length).toBeGreaterThan(0)
+    expect(result).toContain('prisma/')
+    expect(result).not.toContain('.git')
+    expect(result).not.toContain('.git/')
+    expect(result).not.toContain('node_modules')
+    expect(result).not.toContain('node_modules/')
   })
 })

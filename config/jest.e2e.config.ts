@@ -9,6 +9,7 @@ const jestConfig: Config = {
     '^(\\.{1,2}/.*)\\.js$': '$1',
   },
   rootDir: '..',
+  setupFilesAfterEnv: ['<rootDir>/config/jest.e2e.setup.ts'],
   silent: false,
   testEnvironment: 'node',
   testMatch: ['<rootDir>/e2e/**/*.spec.ts'],

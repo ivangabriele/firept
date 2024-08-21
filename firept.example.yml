@@ -7,6 +7,10 @@ publichost:
   host: publichost.org
   subdomain: firept
 
+# customPublicUrl: 'https://example.org'
+
+# https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api?apiVersion=2022-11-28#authenticating-with-a-personal-access-token
+# https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
 repository:
   provider: github
   personalAccessToken: '****'

@@ -18,7 +18,7 @@ const options = {
       description: 'Expose your codebase workspace through a protected public API.',
       version: packageJson.version,
     },
-    servers: [{ url: 'https://{{PUBLICHOST_SUBDOMAIN}}.{{PUBLICHOST_HOST}}' }],
+    servers: [{ url: '{{PUBLIC_URL}}' }],
   },
   components: {
     schemas: {},

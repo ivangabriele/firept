@@ -1,10 +1,10 @@
-import { statSync } from 'node:fs'
-import { promises as fs } from 'node:fs'
+import { promises as fs, existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { deleteAsync } from 'del'
 import { globby } from 'globby'
 
 import { ResponseError } from '../errors/ResponseError.js'
+import { workspaceManager } from '../libs/workspaceManager/index.js'
 import { getAbsolutePath } from '../utils/getAbsolutePath.js'
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -48,25 +48,43 @@ export const FileSystemActions = {
     try {
       const absolutePath = getAbsolutePath(relativePath)
 
-      const paths = await globby(['*', '!.git/**'], {
+      const ignoredPaths = ['**/.git', '**/.git/', ...(workspaceManager.definedConfig.workspace?.ignoredFiles ?? [])]
+      const gitIgnorePath = join(absolutePath, '.gitignore')
+      if (existsSync(gitIgnorePath)) {
+        const gitIgnoreSource = await fs.readFile(gitIgnorePath, 'utf-8')
+        ignoredPaths.push(...gitIgnoreSource.split('\n').filter((line) => line.trim() !== '' && !line.startsWith('#')))
+      }
+
+      const paths = await globby(['*'], {
         cwd: absolutePath,
         dot: true,
+        expandDirectories: false,
         followSymbolicLinks: false,
+        // `gitignore: true` does not seem to work in some cases, e.g. in E2E tests (maybe because it's a submodule?),
+        // so we also pass the `ignoredPaths` explicitly
+        ignore: ignoredPaths,
         gitignore: true,
         onlyFiles: false,
       })
 
-      return paths
-        .map((path) => {
-          const isDirectory = statSync(join(absolutePath, path)).isDirectory()
+      const suffixedPaths = await Promise.all(
+        paths.map(async (path) => {
+          const stats = await fs.lstat(join(absolutePath, path))
 
-          if (isDirectory) {
-            return `${path}/`
-          }
+          return stats.isDirectory() ? `${path}/` : path
+        }),
+      )
 
-          return path
-        })
-        .sort()
+      return suffixedPaths.sort((a, b) => {
+        if (a.endsWith('/') && !b.endsWith('/')) {
+          return -1
+        }
+        if (!a.endsWith('/') && b.endsWith('/')) {
+          return 1
+        }
+
+        return a.localeCompare(b)
+      })
     } catch (err) {
       throw err instanceof Error
         ? ResponseError.fromError(err)

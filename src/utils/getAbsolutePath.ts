@@ -4,8 +4,8 @@ import { workspaceManager } from '../libs/workspaceManager/index.js'
 
 export function getAbsolutePath(relativePath?: string | undefined): string {
   if (!relativePath) {
-    return workspaceManager.loadedAbsoluteRootPath
+    return workspaceManager.definedAbsoluteRootPath
   }
 
-  return join(workspaceManager.loadedAbsoluteRootPath, relativePath)
+  return join(workspaceManager.definedAbsoluteRootPath, relativePath)
 }

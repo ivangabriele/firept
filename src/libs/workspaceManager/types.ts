@@ -3,11 +3,12 @@ export interface FireptConfig {
     apiKey: string
     port: number
   }
-  publichost: {
+  publichost?: {
     apiKey: string
     host: string
     subdomain: string
   }
+  customPublicUrl?: string
   repository?: {
     provider: 'github'
     personalAccessToken: string
@@ -15,6 +16,6 @@ export interface FireptConfig {
     name: string
   }
   workspace?: Partial<{
-    ignoredFiles: string[]
+    ignoredFiles?: string[]
   }>
 }

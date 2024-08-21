@@ -12,7 +12,8 @@ export class ResponseError extends Error {
     this.originalError = originalError
     this.status = status
 
-    B.debug('[FirePT]', 'ResponseError', this)
+    B.debug('[FirePT]', '[ResponseError]', this.message)
+    console.debug(this.originalError)
   }
 
   toHttpResponse(ctx: Context) {
