@@ -20,6 +20,7 @@ jobs:
       - name: Install
         run: yarn
       - name: Prepare
+        shell: bash
         run: yarn test:e2e:prepare
       - name: Serve
         run: yarn test:e2e:serve
