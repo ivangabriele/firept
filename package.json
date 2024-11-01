@@ -44,7 +44,7 @@
 		"@octokit/core": "6.1.2",
 		"@octokit/rest": "21.0.2",
 		"bhala": "3.0.4",
-		"del": "7.1.0",
+		"del": "8.0.0",
 		"esm-path": "1.0.1",
 		"globby": "14.0.2",
 		"json-to-pretty-yaml": "1.2.2",
